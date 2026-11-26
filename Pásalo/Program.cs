@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Pásalo.Data;
+
 namespace Pásalo
 {
     public class Program
@@ -8,6 +11,10 @@ namespace Pásalo
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // Configuración del DbContext con base de datos In-Memory
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseInMemoryDatabase("PasaloDb"));
 
             var app = builder.Build();
 
