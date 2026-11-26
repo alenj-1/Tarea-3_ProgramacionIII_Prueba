@@ -1,0 +1,87 @@
+﻿@model Pásalo.Models.Articulo
+
+@{
+    ViewData["Title"] = "Donar un artículo";
+}
+
+<h1>Donar un artículo</h1>
+
+<p>Por favor, completa la información del artículo que deseas donar.</p>
+
+<hr/>
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Nombre" class="form-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Categoria" class="form-label"></label>
+                <select asp-for="Categoria" class="form-select">
+                    <option value="">Selecciona una categoría</option>
+                    @foreach (var categoria in Pásalo.Models.OpcionesArticulo.Categorias)
+                    {
+                        <option value="@categoria">@categoria</option>
+                    }
+                </select>
+                <span asp-validation-for="Categoria" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Descripcion" class="form-label"></label>
+                <textarea asp-for="Descripcion" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Condicion" class="form-label"></label>
+                <select asp-for="Condicion" class="form-select">
+                    <option value="">Selecciona una condición</option>
+                    @foreach (var condicion in Pásalo.Models.OpcionesArticulo.Condiciones)
+                    {
+                        <option value="@condicion">@condicion</option>
+                    }
+                </select>
+                <span asp-validation-for="Condicion" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Ubicacion" class="form-label"></label>
+                <input asp-for="Ubicacion" class="form-control" />
+                <span asp-validation-for="Ubicacion" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Telefono" class="form-label"></label>
+                <input asp-for="Telefono" class="form-control" type="tel" inputmode="tel" maxlength="12" placeholder="809-173-2122" />
+                
+                <div class="form-text">
+                    Introduce tu teléfono con o sin guiones.
+                </div>
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">
+                    Publicar donación
+                </button>
+
+                <a asp-action="Index" class="btn btn-secondary">
+                    Volver al listado
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

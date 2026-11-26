@@ -8,6 +8,20 @@
 
 <p>Descubre lo que otras personas tienen para compartir y encuentra lo que necesitas.</p>
 
+@if (TempData["MensajeExito"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["MensajeExito"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+}
+
+<div class="mb-4">
+    <a asp-action="Create" class="btn btn-primary">
+        Donar un artículo
+    </a>
+</div>
+
 @if (!Model.Any())
 {
     <div class="alert alert-info">
