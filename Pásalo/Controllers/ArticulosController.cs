@@ -18,5 +18,17 @@ namespace Pásalo.Controllers
 
             return View(articulos);
         }
+
+        public IActionResult Details(int id)
+        {
+            var articulo = _context.Articulos.Find(id);
+
+            if (articulo == null)
+            {
+                return NotFound();
+            }
+
+            return View(articulo);
+        }
     }
 }
