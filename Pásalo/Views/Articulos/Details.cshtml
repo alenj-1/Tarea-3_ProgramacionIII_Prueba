@@ -1,0 +1,44 @@
+﻿@model Pásalo.Models.Articulo
+
+@{
+    ViewData["Title"] = "Detalles del artículo";
+}
+
+<h1>@Model.Nombre</h1>
+
+<p>Conoce más sobre esta donación.</p>
+
+<hr/>
+
+<dl class="row">
+    <dt class="col-sm-3">Categoría</dt>
+    <dd class="col-sm-9">@Model.Categoria</dd>
+
+    <dt class="col-sm-3">Descripción</dt>
+    <dd class="col-sm-9">@Model.Descripcion</dd>
+
+    <dt class="col-sm-3">Condición</dt>
+    <dd class="col-sm-9">@Model.Condicion</dd>
+
+    <dt class="col-sm-3">Ubicación</dt>
+    <dd class="col-sm-9">@Model.Ubicacion</dd>
+
+    <dt class="col-sm-3">Contacto</dt>
+    <dd class="col-sm-9">@Model.Contacto</dd>
+
+    <dt class="col-sm-3">Disponibilidad</dt>
+    <dd class="col-sm-9">
+        @if (Model.Disponible)
+        {
+            <span class="badge bg-success">Disponible</span>
+        }
+        else
+        {
+            <span class="badge bg-secondary">Donado</span>
+        }
+    </dd>
+</dl>
+
+<a asp-action="Index" class="btn btn-secondary mt-4">
+    Volver al listado
+</a>
