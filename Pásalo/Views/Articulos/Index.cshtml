@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Pásalo.Models.Articulo>
+
+@{
+    ViewData["Title"] = "Artículos";
+}
+
+<h1>Donaciones</h1>
+
+<p>Descubre lo que otras personas tienen para compartir y encuentra lo que necesitas.</p>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        Aún no hay donaciones registradas.
+    </div>
+}
+else
+{
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Artículo</th>
+                <th>Categoría</th>
+                <th>Condición</th>
+                <th>Ubicación</th>
+                <th>Disponibilidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var articulo in Model)
+            {
+                <tr>
+                    <td>@articulo.Nombre</td>
+                    <td>@articulo.Categoria</td>
+                    <td>@articulo.Condicion</td>
+                    <td>@articulo.Ubicacion</td>
+                    <td>
+                        @if (articulo.Disponible)
+                        {
+                            <span class="badge bg-success">
+                                Disponible
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">
+                                Donado
+                            </span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
