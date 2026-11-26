@@ -24,6 +24,7 @@ else
                 <th>Condición</th>
                 <th>Ubicación</th>
                 <th>Disponibilidad</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -47,6 +48,11 @@ else
                                 Donado
                             </span>
                         }
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@articulo.Id" class="btn btn-primary btn-sm">
+                            Ver detalles
+                        </a>
                     </td>
                 </tr>
             }
