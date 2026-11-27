@@ -109,6 +109,40 @@ namespace Pásalo.Controllers
             return View(articulo);
         }
 
+        // GET
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var articulo = _context.Articulos.Find(id);
+
+            if (articulo == null)
+            {
+                return NotFound();
+            }
+
+            return View(articulo);
+        }
+
+        // POST
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed([FromRoute] int id)
+        {
+            var articulo = _context.Articulos.Find(id);
+
+            if (articulo == null)
+            {
+                return NotFound();
+            }
+
+            _context.Articulos.Remove(articulo);
+            _context.SaveChanges();
+
+            TempData["MensajeExito"] = "La donación se ha eliminado correctamente.";
+            return RedirectToAction(nameof(Index));
+        }
+
         private static string FormatearTelefono(string telefono)
         {
             var digitos = telefono.Replace("-", "");
