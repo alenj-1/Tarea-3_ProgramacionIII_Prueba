@@ -2,7 +2,7 @@
 
 namespace Pásalo.Models
 {
-    public class Articulo
+    public class Articulo : IValidatableObject
     {
         public int Id { get; set; }
 
