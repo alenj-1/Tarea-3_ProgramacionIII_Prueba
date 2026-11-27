@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Pásalo.Data;
 using Pásalo.Models;
 
@@ -15,11 +16,38 @@ namespace Pásalo.Controllers
 
         // GET
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string? busqueda, string categoria, string? condicion, bool? disponible)
         {
-            var articulos = _context.Articulos.ToList();
+            var consulta = _context.Articulos.AsNoTracking();
 
-            return View(articulos);
+            if (!string.IsNullOrWhiteSpace(busqueda))
+            {
+                busqueda = busqueda.Trim();
+                consulta = consulta.Where(a => a.Nombre.ToLower().Contains(busqueda.ToLower()));
+            }
+
+            if (!string.IsNullOrWhiteSpace(categoria))
+            {
+                consulta = consulta.Where(a => a.Categoria == categoria);
+            }
+
+            if (!string.IsNullOrWhiteSpace(condicion))
+            {
+                consulta = consulta.Where(a => a.Condicion == condicion);
+            }
+
+            if (disponible.HasValue)
+            {
+                consulta = consulta.Where(a => a.Disponible == disponible.Value);
+            }
+
+            ViewData["Busqueda"] = busqueda;
+            ViewData["Categoria"] = categoria;
+            ViewData["Condicion"] = condicion;
+            ViewData["Disponible"] = disponible;
+            ViewData["HayDonaciones"] = _context.Articulos.Any();
+
+            return View(consulta.ToList());
         }
 
         // GET
