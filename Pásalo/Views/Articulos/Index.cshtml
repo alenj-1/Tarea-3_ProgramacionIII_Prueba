@@ -22,11 +22,75 @@
     </a>
 </div>
 
+<form asp-action="Index" method="get" class="border rounded p-3 mb-4">
+    <div class="mb-3">
+        <label for="busqueda" class="form-label">Buscar artículo</label>
+        <input type="search" id="busqueda" name="busqueda" class="form-control" value="@ViewData["Busqueda"]" placeholder="Escribe el nombre de un artículo..." />
+    </div>
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label for="categoria" class="form-label">Categoría</label>
+            <select id="categoria" name="categoria" class="form-select">
+                <option value="">Todas</option>
+                @foreach (var categoria in Pásalo.Models.OpcionesArticulo.Categorias)
+                {
+                    <option value="@categoria" selected="@(ViewData["Categoria"] as string == categoria)">
+                        @categoria
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="condicion" class="form-label">Condición</label>
+            <select id="condicion" name="condicion" class="form-select">
+                <option value="">Todas</option>
+                @foreach (var condicion in Pásalo.Models.OpcionesArticulo.Condiciones)
+                {
+                    <option value="@condicion" selected="@(ViewData["Condicion"] as string == condicion)">
+                        @condicion
+                    </option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="disponible" class="form-label">Disponibilidad</label>
+            <select id="disponible" name="disponible" class="form-select">
+                <option value="">Todas</option>
+                <option value="true" selected="@((bool?)ViewData["Disponible"] == true)">
+                    Disponible
+                </option>
+                <option value="false" selected="@((bool?)ViewData["Disponible"] == false)">
+                    Donado
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Buscar
+    </button>
+
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        Limpiar filtros
+    </a>
+</form>
+
 @if (!Model.Any())
 {
-    <div class="alert alert-info">
-        Aún no hay donaciones registradas.
-    </div>
+    if ((bool)ViewData["HayDonaciones"]!)
+    {
+        <div class="alert alert-info" role="alert">
+            No se encontraron donaciones que coincidan con los filtros seleccionados.
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            Aún no hay donaciones registradas.
+        </div>
+    }
 }
 else
 {
