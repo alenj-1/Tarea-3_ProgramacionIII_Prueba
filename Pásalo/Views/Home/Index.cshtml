@@ -1,8 +1,23 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="inicio text-center">
+    <h1 class="display-5 fw-bold mb-3">
+        Lo que ya no necesitas podría ser importante para alguien más.
+    </h1>
+
+    <p class="lead mb-4">
+        En Pásalo puedes compartir los artículos que ya no usas con personas que los necesitan y encontrar otros que puedan serte útiles.
+    </p>
+
+    <div class="d-flex justify-content-center flex-wrap gap-3">
+        <a asp-controller="Articulos" asp-action="Index" class="btn btn-primary px-4 py-2">
+            Explorar donaciones
+        </a>
+
+        <a asp-controller="Articulos" asp-action="Create" class="btn btn-secondary px-4 py-2">
+            Donar un artículo
+        </a>
+    </div>
+</section>

@@ -4,15 +4,15 @@
     ViewData["Title"] = "Donar un artículo";
 }
 
-<h1>Donar un artículo</h1>
+<h1 class="text-center">Donar un artículo</h1>
 
-<p>Por favor, completa la información del artículo que deseas donar.</p>
+<p class="text-center">
+    Completa la información del artículo que deseas donar.
+</p>
 
-<hr/>
-
-<div class="row">
-    <div class="col-md-6">
-        <form asp-action="Create" method="post">
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <form asp-action="Create" method="post" class="panel">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="mb-3">
@@ -62,17 +62,17 @@
                 <input asp-for="Telefono" class="form-control" type="tel" inputmode="tel" maxlength="12" placeholder="809-173-2122" />
                 
                 <div class="form-text">
-                    Introduce tu teléfono con o sin guiones.
+                    Introduce tu teléfono con o sin guiones. Será visible para los interesados en el artículo.
                 </div>
                 <span asp-validation-for="Telefono" class="text-danger"></span>
             </div>
 
-            <div class="mt-4">
+            <div class="mt-4 d-flex flex-wrap gap-2">
                 <button type="submit" class="btn btn-primary">
                     Publicar donación
                 </button>
 
-                <a asp-action="Index" class="btn btn-secondary">
+                <a asp-action="Index" class="btn btn-outline-secondary">
                     Volver al listado
                 </a>
             </div>
