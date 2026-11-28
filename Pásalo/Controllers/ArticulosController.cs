@@ -16,7 +16,7 @@ namespace Pásalo.Controllers
 
         // GET
         [HttpGet]
-        public IActionResult Index(string? busqueda, string categoria, string? condicion, bool? disponible)
+        public IActionResult Index(string? busqueda, string? categoria, string? condicion, bool? disponible)
         {
             var consulta = _context.Articulos.AsNoTracking();
 

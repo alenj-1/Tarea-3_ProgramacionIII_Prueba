@@ -6,9 +6,9 @@ namespace Pásalo.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "El artículo es obligatorio.")]
-        [StringLength(100, ErrorMessage = "El artículo no puede superar los 100 caracteres.")]
-        [Display(Name = "Artículo")]
+        [Required(ErrorMessage = "Introduce el nombre del artículo.")]
+        [StringLength(100, ErrorMessage = "El nombre del artículo no puede superar los 100 caracteres.")]
+        [Display(Name = "Nombre del artículo")]
         public string Nombre { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "La categoría es obligatoria.")]
@@ -30,7 +30,7 @@ namespace Pásalo.Models
         public string Ubicacion { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El teléfono es obligatorio.")]
-        [Display(Name = "Teléfono")]
+        [Display(Name = "Teléfono de contacto")]
         [RegularExpression(@"^(809|829|849)([0-9]{7}|-[0-9]{3}-[0-9]{4})$", ErrorMessage = "Introduce un teléfono válido de 10 dígitos.")]
         public string Telefono { get; set; } = string.Empty;
 

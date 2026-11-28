@@ -4,15 +4,15 @@
     ViewData["Title"] = "Editar donación";
 }
 
-<h1>Editar donación</h1>
+<h1 class="text-center">Editar donación</h1>
 
-<p>Por favor, modifica la información del artículo que seleccionaste.</p>
+<p class="text-center">
+    Modifica la información del artículo que seleccionaste.
+</p>
 
-<hr />
-
-<div class="row">
-    <div class="col-md-6">
-        <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <form asp-action="Edit" asp-route-id="@Model.Id" method="post" class="panel">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="mb-3">
@@ -83,12 +83,12 @@
                 <span asp-validation-for="Disponible" class="text-danger"></span>
             </div>
 
-            <div class="mt-4">
+            <div class="mt-4 d-flex flex-wrap gap-2">
                 <button type="submit" class="btn btn-primary">
                     Guardar cambios
                 </button>
 
-                <a asp-action="Index" class="btn btn-secondary">
+                <a asp-action="Index" class="btn btn-outline-secondary">
                     Volver al listado
                 </a>
             </div>
